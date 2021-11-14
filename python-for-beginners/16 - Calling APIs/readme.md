@@ -11,3 +11,35 @@ Requirements for calling an API:
 - function name of method to call as listed in the [API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44/operations/56f91f2e778daf14a499e1fa?WT.mc_id=python-c9-niner?WT.mc_id=python-c9-niner)
 - function parameters as listed in the [API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44/operations/56f91f2e778daf14a499e1fa?WT.mc_id=python-c9-niner)
 - HTTP Headers as listed in the [API documentation](https://westus.dev.cognitive.microsoft.com/docs/services/5adf991815e1060e6355ad44/operations/56f91f2e778daf14a499e1fa?WT.mc_id=python-c9-niner)
+
+## HTTP calls with requests module
+
+```python
+import requests
+import json
+
+address = 'http://hostname/api_endpoint/'
+http_headers = {'Content-Type':'<content type>',
+                'APIKEY':'<API key>'}
+
+function_parameters = {'parameter1':'value1, value2',
+                       'parameter2':'value1'}
+
+data_path = "<path of the data>"
+message_body = open(data_path, "rb").read()
+
+# call the API with HTTP POST method
+# requests.post(address,
+#               headers,
+#               params,
+#               data)
+
+response = requests.post(address, headers=http_headers, params=function_parameters, data=message_body)
+
+# Raise an exception if it returns an error code
+response.raise_for_status()
+
+# display the JSON results
+results = response.json()
+print(json.dumps(results)
+```

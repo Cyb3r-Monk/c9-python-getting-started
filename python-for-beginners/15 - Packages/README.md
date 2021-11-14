@@ -22,10 +22,38 @@ display('Not a warning')
 
 [Distribution packages](https://packaging.python.org/glossary/#term-distribution-package) are external archive files which contain resources such as classes and functions. Most every application you create will make use of one or more packages. Imports from packages follow the same syntax as modules you've created. The [Python Package index](https://pypi.org/) contains a full list of packages you can install using [pip](https://pip.pypa.io/en/stable/).
 
+```python
+# Install an individual package
+pip install colorama
+
+# Install from a list of packages
+pip install -r requirements.txt
+
+# requirements.txt
+colorama
+```
+
 ## Virtual environments
 
 [Virtual environments](https://docs.python.org/3.7/tutorial/venv.html) allow you to install packages into an isolated folder. This allows you to better manage versions.
 
-``` console
+By default, packages are installed globally. This makes version management of packages a challenge.
 
+``` console
+# Install virtual environment (globally)
+pip install virtualenv
+
+# create a virtual environment (Windows)
+# python -m venv <folder_name>
+python -m venv .venv
+# Activate the virtual environment
+# <folder_name>\Scripts\Activate.bat (or .ps1)
+.venv\Scripts\Activate.ps1
+
+# create a virtual environment (OSX/Linux)
+virtualenv <folder_name>
+# Activate the virtual environment
+# <folder_name>/bin/activate
 ```
+
+After activating the virtual environment, packages and modules can be installed in the virtual environment.
